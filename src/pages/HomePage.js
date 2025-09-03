@@ -3,19 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 const containerStyle = {
   minHeight: "100vh",
-  background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  background: "#ffffff",
   padding: "20px",
   position: "relative"
 };
 
 const headerStyle = {
-  background: "rgba(255, 255, 255, 0.95)",
-  backdropFilter: "blur(10px)",
-  borderRadius: "20px",
+  background: "#ffffff",
+  borderRadius: "12px",
   padding: "30px 40px",
   marginBottom: "30px",
-  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-  border: "1px solid rgba(255, 255, 255, 0.2)",
+  boxShadow: "0 2px 12px rgba(0, 0, 0, 0.08)",
+  border: "1px solid #f0f0f0",
   textAlign: "center"
 };
 
@@ -23,11 +22,7 @@ const titleStyle = {
   fontSize: "2.5rem",
   fontWeight: "700",
   color: "#2c3e50",
-  margin: "0 0 10px 0",
-  background: "linear-gradient(135deg, #667eea, #764ba2)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text"
+  margin: "0 0 10px 0"
 };
 
 const subtitleStyle = {
@@ -196,24 +191,6 @@ function HomePage() {
         </div>
       </div>
 
-      <div style={statsContainerStyle}>
-        <div style={statCardStyle}>
-          <div style={statNumberStyle}>12</div>
-          <div style={statLabelStyle}>活跃订单</div>
-        </div>
-        <div style={statCardStyle}>
-          <div style={statNumberStyle}>156</div>
-          <div style={statLabelStyle}>库存项目</div>
-        </div>
-        <div style={statCardStyle}>
-          <div style={statNumberStyle}>8</div>
-          <div style={statLabelStyle}>待审批</div>
-        </div>
-        <div style={statCardStyle}>
-          <div style={statNumberStyle}>24</div>
-          <div style={statLabelStyle}>生产任务</div>
-        </div>
-      </div>
 
       <div style={gridContainerStyle}>
         {/* 销售管理模块 */}
@@ -316,6 +293,14 @@ function HomePage() {
               onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle("#d35400"))}
             >
               📊 产品报目单
+            </button>
+            <button 
+              style={buttonStyle("#f39c12")} 
+              onClick={() => handleButtonClick("/processing-production")}
+              onMouseEnter={(e) => Object.assign(e.target.style, buttonHoverStyle)}
+              onMouseLeave={(e) => Object.assign(e.target.style, buttonStyle("#f39c12"))}
+            >
+              🔧 加工件生产
             </button>
 
           </div>

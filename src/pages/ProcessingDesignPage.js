@@ -49,6 +49,8 @@ function ProcessingDesignPage() {
   const handleDesignDrawingSubmit = () => {
     // 刷新页面数据
     fetchProcessingMaterials();
+    // 显示成功消息
+    alert("设计图纸创建成功！材料库存已自动更新。");
   };
 
   if (loading) {

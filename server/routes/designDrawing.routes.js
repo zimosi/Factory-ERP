@@ -11,4 +11,10 @@ router.get("/", designDrawingController.getAllDesignDrawings);
 // 获取设计图纸详情
 router.get("/:id", designDrawingController.getDesignDrawingById);
 
+// 完成生产
+router.post("/:id/complete", designDrawingController.completeProduction);
+
+// 创建设计图纸领料单
+router.post("/pick-order", designDrawingController.createDrawingPickOrder);
+
 module.exports = router;

@@ -24,6 +24,8 @@ import PurchaseApprovalPage from "./pages/PurchaseApprovalPage";
 import ReturnApprovalPage from "./pages/ReturnApprovalPage";
 import DesignOrdersPage from "./pages/DesignOrdersPage";
 import ProcessingDesignPage from "./pages/ProcessingDesignPage";
+import ProcessingProductionPage from "./pages/ProcessingProductionPage";
+import DesignDrawingDetailPage from "./pages/DesignDrawingDetailPage";
 import MaterialSearchDemo from "./pages/MaterialSearchDemo";
 
 
@@ -185,6 +187,22 @@ function App() {
           element={
             <RequireAuth>
               <MaterialSearchDemo />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/processing-production"
+          element={
+            <RequireAuth>
+              <ProcessingProductionPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/design-drawings/:id"
+          element={
+            <RequireAuth>
+              <DesignDrawingDetailPage />
             </RequireAuth>
           }
         />

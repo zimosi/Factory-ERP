@@ -60,8 +60,8 @@ exports.confirmArrival = async (req, res) => {
 
     // 4. 记录入库流水
     await pool.query(
-      `INSERT INTO inventory_records (material_id, material_name, type, quantity, unit, operator, related_order_id, remark) VALUES (?, ?, 'in', ?, ?, ?, ?, ?)` ,
-      [order.material_id, order.material_name, order.quantity, order.unit, order.purchaser, order.id, '采购订单入库']
+      `INSERT INTO inventory_records (material_id, material_name, type, quantity, unit, operator, related_order_id, remark, what) VALUES (?, ?, 'in', ?, ?, ?, ?, ?, ?)` ,
+      [order.material_id, order.material_name, order.quantity, order.unit, order.purchaser, order.id, '采购订单入库', '采购订单']
     );
 
     res.json({ message: "到货确认成功" });
@@ -75,10 +75,17 @@ exports.reviewPurchaseOrder = async (req, res) => {
   const { is_reviewed, is_approved, review_date } = req.body;
   
   try {
+    // 转换日期格式为MySQL兼容格式
+    let formattedDate = null;
+    if (review_date) {
+      const date = new Date(review_date);
+      formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+    }
+    
     // 更新审核状态
     await pool.query(
       "UPDATE purchase_orders SET is_reviewed = ?, is_approved = ?, review_date = ? WHERE id = ?", 
-      [is_reviewed ? 1 : 0, is_approved ? 1 : 0, review_date || null, id]
+      [is_reviewed ? 1 : 0, is_approved ? 1 : 0, formattedDate, id]
     );
     
     res.json({ message: "审核状态已更新" });
